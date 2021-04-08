@@ -1,0 +1,427 @@
+:root {
+    --light: #edf2f9;
+    --dark: #152e4d;
+    --darker: #12263f;
+    /*  */
+    --color-primary: var(--color-cyan);
+    --color-primary-50: var(--color-cyan-50);
+    --color-primary-100: var(--color-cyan-100);
+    --color-primary-light: var(--color-cyan-light);
+    --color-primary-lighter: var(--color-cyan-lighter);
+    --color-primary-dark: var(--color-cyan-dark);
+    --color-primary-darker: var(--color-cyan-darker);
+    /*  */
+    --color-green: #16a34a;
+    --color-green-50: #f0fdf4;
+    --color-green-100: #dcfce7;
+    --color-green-light: #22c55e;
+    --color-green-lighter: #4ade80;
+    --color-green-dark: #15803d;
+    --color-green-darker: #166534;
+    /*  */
+    --color-blue: #2563eb;
+    --color-blue-50: #eff6ff;
+    --color-blue-100: #dbeafe;
+    --color-blue-light: #3b82f6;
+    --color-blue-lighter: #60a5fa;
+    --color-blue-dark: #1d4ed8;
+    --color-blue-darker: #1e40af;
+    /*  */
+    --color-cyan: #0891b2;
+    --color-cyan-50: #ecfeff;
+    --color-cyan-100: #cffafe;
+    --color-cyan-light: #06b6d4;
+    --color-cyan-lighter: #22d3ee;
+    --color-cyan-dark: #0e7490;
+    --color-cyan-darker: #155e75;
+    /*  */
+    --color-teal: #0d9488;
+    --color-teal-50: #f0fdfa;
+    --color-teal-100: #ccfbf1;
+    --color-teal-light: #14b8a6;
+    --color-teal-lighter: #2dd4bf;
+    --color-teal-dark: #0f766e;
+    --color-teal-darker: #115e59;
+    /*  */
+    --color-fuchsia: #c026d3;
+    --color-fuchsia-50: #fdf4ff;
+    --color-fuchsia-100: #fae8ff;
+    --color-fuchsia-light: #d946ef;
+    --color-fuchsia-lighter: #e879f9;
+    --color-fuchsia-dark: #a21caf;
+    --color-fuchsia-darker: #86198f;
+    /*  */
+    --color-violet: #7c3aed;
+    --color-violet-50: #f5f3ff;
+    --color-violet-100: #ede9fe;
+    --color-violet-light: #8b5cf6;
+    --color-violet-lighter: #a78bfa;
+    --color-violet-dark: #6d28d9;
+    --color-violet-darker: #5b21b6;
+}
+@layer base {
+    html {
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+@layer utilities {
+    .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .list-interpunct > li:before {
+        content: "・";
+        float: left;
+        margin: 0 0 0 -0.9em;
+        width: 0.9em;
+    }
+
+    @media (min-width: 992px) {
+        .list-interpunct > li:before {
+            margin: 0 0 0 -1.5em;
+            width: 1.5em;
+        }
+    }
+}
+
+.text-link {
+    @apply text-blue-600;
+}
+
+.text-link:hover {
+    @apply text-blue-700;
+}
+
+.max-h-144 {
+    max-height: 36rem;
+}
+
+.max-h-192 {
+    max-height: 48rem;
+}
+
+.max-h-0 {
+    max-height: 0;
+}
+
+.group:focus .group-focus\:max-h-40 {
+    max-height: 10rem;
+}
+
+/* input[type="number"] {
+    border: none !important;
+} */
+
+input[name="custom-number-input"]::-webkit-inner-spin-button,
+input[name="custom-number-input"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.custom-number-input input:focus {
+    outline: none !important;
+    border: none !important;
+}
+
+.custom-number-input button:focus {
+    outline: none !important;
+    border: none !important;
+}
+
+/*Toast open/load animation*/
+.alert-toast {
+    -webkit-animation: slide-in-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+        both;
+    animation: slide-in-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/*Toast close animation*/
+.alert-toast input:checked ~ * {
+    -webkit-animation: fade-out-right 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+        both;
+    animation: fade-out-right 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* -------------------------------------------------------------
+ * Animations generated using Animista * w: http://animista.net,
+ * ---------------------------------------------------------- */
+
+@-webkit-keyframes slide-in-top {
+    0% {
+        -webkit-transform: translateY(-1000px);
+        transform: translateY(-1000px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-top {
+    0% {
+        -webkit-transform: translateY(-1000px);
+        transform: translateY(-1000px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes slide-out-top {
+    0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateY(-1000px);
+        transform: translateY(-1000px);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-out-top {
+    0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateY(-1000px);
+        transform: translateY(-1000px);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes slide-in-bottom {
+    0% {
+        -webkit-transform: translateY(1000px);
+        transform: translateY(1000px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-bottom {
+    0% {
+        -webkit-transform: translateY(1000px);
+        transform: translateY(1000px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes slide-out-bottom {
+    0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateY(1000px);
+        transform: translateY(1000px);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-out-bottom {
+    0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateY(1000px);
+        transform: translateY(1000px);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes slide-in-right {
+    0% {
+        -webkit-transform: translateX(1000px);
+        transform: translateX(1000px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-right {
+    0% {
+        -webkit-transform: translateX(1000px);
+        transform: translateX(1000px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fade-out-right {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateX(50px);
+        transform: translateX(50px);
+        opacity: 0;
+    }
+}
+
+@keyframes fade-out-right {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateX(50px);
+        transform: translateX(50px);
+        opacity: 0;
+    }
+}
+
+@layer components {
+    .toggle:checked + span {
+        @apply top-0 left-6 bg-primary;
+    }
+    .toggle:disabled + span {
+        @apply bg-gray-500 shadow-none;
+    }
+    .toggle:checked:disabled {
+        @apply bg-gray-200;
+    }
+    .toggle:checked:disabled + span {
+        @apply shadow-none bg-primary-lighter;
+    }
+    .toggle:focus + span {
+        @apply ring ring-primary-lighter;
+    }
+
+    input:invalid.invalid,
+    textarea:invalid.invalid {
+        @apply ring ring-danger-light dark:ring-danger;
+    }
+}
+
+/*Form fields*/
+.dataTables_wrapper select,
+.dataTables_wrapper .dataTables_filter input {
+    color: #4a5568; /*text-gray-700*/
+    padding-left: 1rem; /*pl-4*/
+    padding-right: 1rem; /*pl-4*/
+    padding-top: 0.5rem; /*pl-2*/
+    padding-bottom: 0.5rem; /*pl-2*/
+    line-height: 1.25; /*leading-tight*/
+    border-width: 2px; /*border-2*/
+    border-radius: 0.25rem;
+    border-color: #edf2f7; /*border-gray-200*/
+    background-color: #edf2f7; /*bg-gray-200*/
+}
+
+/*Row Hover*/
+table.dataTable.hover tbody tr:hover,
+table.dataTable.display tbody tr:hover {
+    background-color: #ebf4ff; /*bg-indigo-100*/
+}
+
+/*Pagination Buttons*/
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    font-weight: 700; /*font-bold*/
+    border-radius: 0.25rem; /*rounded*/
+    border: 1px solid transparent; /*border border-transparent*/
+}
+
+/*Pagination Buttons - Current selected */
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    color: #fff !important; /*text-white*/
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /*shadow*/
+    font-weight: 700; /*font-bold*/
+    border-radius: 0.25rem; /*rounded*/
+    background: #667eea !important; /*bg-indigo-500*/
+    border: 1px solid transparent; /*border border-transparent*/
+}
+
+/*Pagination Buttons - Hover */
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    color: #fff !important; /*text-white*/
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /*shadow*/
+    font-weight: 700; /*font-bold*/
+    border-radius: 0.25rem; /*rounded*/
+    background: #667eea !important; /*bg-indigo-500*/
+    border: 1px solid transparent; /*border border-transparent*/
+}
+
+/*Add padding to bottom border */
+table.dataTable.no-footer {
+    border-bottom: 1px solid #e2e8f0; /*border-b-1 border-gray-300*/
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+}
+
+/*Change colour of responsive icon*/
+table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before,
+table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
+    background-color: #667eea !important; /*bg-indigo-500*/
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary);
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-primary-dark);
+}
+
+.custom-scroll,
+.sidebar,
+.main_content {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) !important;
+}
