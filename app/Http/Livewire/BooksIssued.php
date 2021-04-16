@@ -19,7 +19,7 @@ class BooksIssued extends Component
         'issue_id' => "unique:book_returns,issue_id",
         'returned_by' => 'required|string',
         'returned_to' => 'required|string',
-        'returned_date' => 'required',
+        'returned_date' => 'required|date|after:issued_at',
     ];
 
 

@@ -231,7 +231,7 @@
                     <div class="h-full px-4 overflow-x-hidden overflow-y-scroll text-sm text-gray-400 custom-scroll">
                         <h3 class="flex p-4 ">
                             <div class="pt-5">
-                                <span class="block text-base font-semibold text-gray-800 ">
+                                <span class="block text-base font-semibold text-gray-800 dark:text-light ">
                                     My activities
                                 </span>
                                 <span class="text-xs ">
@@ -254,7 +254,7 @@
                         <ul class="font-medium">
                             <li class="grid grid-cols-8 px-4 mb-6 text-xs ">
                                 <span
-                                    class="col-span-2 font-semibold text-gray-800 ">{{\Carbon\Carbon::parse($activity->created_at)->format('F j, Y')}}</span>
+                                    class="col-span-2 font-semibold text-gray-800 dark:text-light">{{\Carbon\Carbon::parse($activity->created_at)->format('F j, Y')}}</span>
                                 <span
                                     class="relative z-10 block w-3 h-3 col-span-1 bg-gray-100 border-2 border-green-500 rounded-full">
                                     <span
@@ -272,6 +272,13 @@
                                     {{$activity->title}} Named
                                     @if($activity->activityable)
                                     {{$activity->activityable->title}}&nbsp;{{$activity->activityable->name}}
+                                    @endif
+                                </span>
+                                @elseif($activity->activityable_type == 'App\Models\Event')
+                                <span class="col-span-5 ">
+                                    {{$activity->title}} Named
+                                    @if($activity->activityable)
+                                    {{$activity->activityable->name}}
                                     @endif
                                 </span>
                                 @endif
@@ -339,11 +346,11 @@
 
                 <div class="grid h-full col-span-12 bg-white dark:bg-dark rounded-2xl md:col-span-8">
                     <div class="w-56 px-6 py-3 mt-6">
-                        <select id="country" name="country" autocomplete="off" wire:model="selectedEvent"
+                        <select id="event_name" name="event_name" autocomplete="off" wire:model="selectedEvent"
                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm dark:border-darker dark:bg-dark focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             <option>Select Event</option>
-                            @foreach($participants as $participant)
-                            <option>{{$participant->event_name}}</option>
+                            @foreach($events as $event)
+                            <option>{{$event->title}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -361,26 +368,28 @@
                             </thead>
                             <tbody class="text-sm font-light text-gray-600 dark:text-light">
                                 @forelse($event_list as $list)
-                                <tr
-                                    class="border-b border-gray-200 dark:border-darker hover:bg-gray-100 dark:hover:bg-dark">
-                                    <td class="px-6 py-3 text-left whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="font-medium">{{$loop->index+1}}</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-3 text-left whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="font-medium">{{$list->name}}</span>
-                                        </div>
-                                    </td>
 
-                                    <td class="px-6 py-3 text-left whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="font-medium">{{$list->event_name}}</span>
-                                        </div>
-                                    </td>
+                                    <tr
+                                        class="border-b border-gray-200 dark:border-darker hover:bg-gray-100 dark:hover:bg-dark">
+                                        <td class="px-6 py-3 text-left whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <span class="font-medium">{{$loop->index+1}}</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-3 text-left whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <span class="font-medium">{{$list->name}}</span>
+                                            </div>
+                                        </td>
 
-                                </tr>
+                                        <td class="px-6 py-3 text-left whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <span class="font-medium">{{$list->event_name}}</span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+
                                 @empty
                                 @foreach($participants as $participant)
                                 <tr
@@ -410,16 +419,16 @@
 
                 </div>
 
-                <div class="grid h-full col-span-12 bg-white rounded-2xl md:col-span-4">
+                <div class="grid h-full col-span-12 bg-white dark:bg-dark rounded-2xl md:col-span-4">
                     <div class="flex items-center justify-center" x-data="temp()" x-init="init()">
 
 
                         <template x-if="`${temp}`">
                             <div class="flex flex-col w-full max-w-xs p-4 rounded ">
                                 <div class="flex flex-row items-center justify-between">
-                                    <div class="text-xl font-bold" x-text="`${temp.name}`">n/a
+                                    <div class="text-xl font-bold dark:text-light" x-text="`${temp.name}`">n/a
                                     </div>
-                                    <div class="ml-4 text-sm font-medium"> &nbsp;Feels Like <span
+                                    <div class="ml-4 text-sm font-medium dark:text-light"> &nbsp;Feels Like <span
                                             class="p-2 text-sm font-semibold rounded text-primary-dark bg-primary-50"
                                             x-text="`${temp.main.feels_like}`">n/a</span></div>
                                 </div>
@@ -451,7 +460,7 @@
                                     </div>
                                 </div>
                                 <div class="flex flex-row items-center justify-between mt-6">
-                                    <div class="text-5xl font-medium" x-text="`${parseInt(temp.main.temp)}°C`">n/a
+                                    <div class="text-5xl font-medium dark:text-light" x-text="`${parseInt(temp.main.temp)}°C`">n/a
                                     </div>
                                     <div class="px-2 py-1 text-xl font-semibold bg-gray-700 text-light"
                                         x-text="`${temp.weather[0].main}`">n/a</div>
@@ -459,21 +468,21 @@
                                 </div>
                                 <div class="flex flex-row justify-between mt-6">
                                     <div class="flex flex-col items-center">
-                                        <div class="wind"></div>
-                                        <div class="text-sm font-medium">Wind</div>
-                                        <div class="text-sm text-gray-500" x-text="`${temp.wind.speed}k/h`">n/a
+                                        <div class="wind dark:text-light"></div>
+                                        <div class="text-sm font-medium dark:text-light">Wind</div>
+                                        <div class="text-sm text-gray-500 dark:text-light" x-text="`${temp.wind.speed}k/h`">n/a
                                         </div>
                                     </div>
                                     <div class="flex flex-col items-center">
-                                        <div class="humidity"></div>
-                                        <div class="text-sm font-medium">Humidity</div>
-                                        <div class="text-sm text-gray-500" x-text="`${temp.main.humidity}%`">n/a
+                                        <div class="humidity dark:text-light"></div>
+                                        <div class="text-sm font-medium dark:text-light">Humidity</div>
+                                        <div class="text-sm text-gray-500 dark:text-light" x-text="`${temp.main.humidity}%`">n/a
                                         </div>
                                     </div>
                                     <div class="flex flex-col items-center">
-                                        <div class="pressure"></div>
-                                        <div class="text-sm font-medium">Pressure</div>
-                                        <div class="text-sm text-gray-500" x-text="`${parseInt(temp.main.pressure)}°C`">
+                                        <div class="pressure dark:text-light"></div>
+                                        <div class="text-sm font-medium dark:text-light">Pressure</div>
+                                        <div class="text-sm text-gray-500 dark:text-light" x-text="`${parseInt(temp.main.pressure)}°C`">
                                             n/a</div>
                                     </div>
                                 </div>
@@ -487,13 +496,34 @@
             <div class="grid grid-cols-1 mt-6 md:gap-4 md:grid-cols-12">
                 <div class="grid h-auto col-span-12 rounded">
                     <div class="w-full h-full card-header bg-gray-50 rounded-2xl">
-                        <h3 class="flex justify-center">
+                        <div x-data="{
+                            openTab: 1,
+                            activeClasses: 'border-l border-t border-r border-primary rounded-t text-blue-700 outline-none',
+                            inactiveClasses: 'text-primary hover:text-primary-dark'
+                          }"
+                        class="col-span-1 p-6 overflow-y-auto bg-white max-h-96 lg:col-span-8 rounded-2xl dark:bg-darker ">
+                        <ul class="flex border-b border-primary">
+                            <li @click="openTab = 1" class="mr-1 -mb-px" :class="{ '-mb-px': openTab === 1 }">
+                                <button :class="openTab === 1 ? activeClasses : inactiveClasses"
+                                    class="inline-block px-4 py-2 font-semibold bg-white rounded-t focus:outline-none hover:text-primary-dark text-primary dark:bg-darker dark:border-primary dark:text-primary-dark ">My Leave Requests</button>
+                            </li>
+                            <li @click="openTab = 2" class="mr-1" :class="{ '-mb-px': openTab === 2 }">
+                                <button :class="openTab === 2 ? activeClasses : inactiveClasses"
+                                    class="inline-block px-4 py-2 font-semibold bg-white focus:outline-none text-primary dark:bg-darker hover:text-primary-dark dark:border-primary dark:text-primary-dark">On Leave Today
+                                    </button>
+                            </li>
+                        </ul>
+                        <div class="w-full">
+                            <div x-show="openTab === 1">
+                                <livewire:user-leave-table hideable="inline">
+                            </div>
+                            <div x-show="openTab === 2">
+                                <livewire:on-leave-table />
 
-                            <span class="block text-2xl font-semibold text-gray-800 ">
-                                Leave Management
-                            </span>
+                            </div>
+                        </div>
 
-                        </h3>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -554,6 +584,5 @@
         }
     };
 }
-
 </script>
 @endpush

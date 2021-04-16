@@ -20,7 +20,7 @@
     <div class="py-12">
         <div class="px-6 mx-auto mb-6 max-w-7xl sm:px-6 lg:px-8">
 
-            @livewire('events-list', [$event->id])
+            @livewire('events-list', ['event' => $event])
 
         </div>
     </div>

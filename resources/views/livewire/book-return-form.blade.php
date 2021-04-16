@@ -25,14 +25,14 @@
                             <div class="hidden col-span-6 sm:col-span-3">
                                 <label for="issue_id" class="block text-sm font-medium text-gray-700">Issue
                                     ID</label>
-                                <input type="text" wire:model="issue_id" name="issue_id" id="issue_id"
+                                <input type="text" disabled wire:model="issue_id" name="issue_id" id="issue_id"
                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm default-value focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
 
                             </div>
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="returned_by" class="block text-sm font-medium text-gray-700">Returned
                                     By</label>
-                                <input type="text" wire:model="returned_by" name="returned_by" id="returned_by"
+                                <input type="text" disabled wire:model="returned_by" name="returned_by" id="returned_by"
                                     placeholder="Enter User Name"
                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm default-value focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
 
@@ -41,7 +41,7 @@
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="returned_to" class="block text-sm font-medium text-gray-700">Retruned
                                     To</label>
-                                <input type="text" wire:model="returned_to" name="returned_to" id="returned_to"
+                                <input type="text" disabled wire:model="returned_to" name="returned_to" id="returned_to"
                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
 
                             </div>
@@ -49,7 +49,7 @@
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="book_name" class="block text-sm font-medium text-gray-700">Book
                                     Name</label>
-                                <input type="text" required wire:model="book_name" name="book_name" id="book_name"
+                                <input type="text" disabled required wire:model="book_name" name="book_name" id="book_name"
                                     placeholder="Enter Book Name"
                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm typehead focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                             </div>
@@ -58,7 +58,7 @@
                                 <label for="return_date" class="block text-sm font-medium text-gray-700">Returned
                                     date</label>
                                 <div class="grow-wrap">
-                                    <input type="text" wire:model="returned_date" name="returned_date"
+                                    <input type="text" disabled wire:model="returned_date" name="returned_date"
                                         id="returned_date"
                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
 
@@ -69,7 +69,7 @@
                                 <label for="issued_at" class="block text-sm font-medium text-gray-700">Issued Date
                                 </label>
                                 <div class="grow-wrap">
-                                    <input type="text" wire:model="issued_at" name="issued_at" id="issued_at"
+                                    <input type="text" disabled wire:model="issued_at" name="issued_at" id="issued_at"
                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                                 </div>
                             </div>

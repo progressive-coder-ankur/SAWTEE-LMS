@@ -10,21 +10,12 @@
                 <div class="mt-6 shadow sm:rounded-md">
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-12 gap-6">
-                            <div class="col-span-6">
-                                <label for="event_name" class="block text-sm font-medium text-gray-700">Event
-                                    Name</label>
-                                <x-jet-input type="text" required wire:model="event_name" name="event_name"
-                                    id="event_name" autocomplete="event_name" placeholder="Type Event Name"
-                                    class="block w-full mt-1 @error('event_name') border-red-300 @else border-gray-300 @enderror rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                                @error('event_name') <span
-                                    class="flex items-center mt-1 ml-1 text-xs font-medium tracking-wide text-red-500">{{ $message }}</span>@enderror
-                            </div>
 
                             <div class="col-span-6">
                                 <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
                                 <x-jet-input type="text" required wire:model="name" name="name" id="name"
                                     autocomplete="name" placeholder="Type Participant Name"
-                                    class="block w-full mt-1 @error('name') border-red-300 @else border-gray-300 @enderror rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                                 @error('name') <span
                                     class="flex items-center mt-1 ml-1 text-xs font-medium tracking-wide text-red-500">{{ $message }}</span>@enderror
                             </div>

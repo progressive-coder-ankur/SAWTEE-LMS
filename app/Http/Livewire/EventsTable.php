@@ -16,6 +16,7 @@ class EventsTable extends LivewireDatatable
     public $exportable = true;
     public $hideable = 'inline';
 
+    protected $listeners = ['renderUpdatedData' => 'builder'];
 
     public function builder()
     {

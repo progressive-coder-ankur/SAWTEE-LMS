@@ -300,11 +300,11 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-jet-danger-button wire:click="closeModal()" wire:loading.attr="disabled">
+            <x-jet-danger-button wire:click="closeModal()"  wire:loading.attr="disabled">
                 Nevermind
             </x-jet-danger-button>
 
-            <x-jet-button wire:click.prevent="addContact()" class="ml-2" type="button" wire:loading.attr="disabled">
+            <x-jet-button wire:click.prevent="addContact()" wire:keydown.enter="addContact()" class="ml-2" type="button" wire:loading.attr="disabled">
                 Add Contact
             </x-jet-button>
         </x-slot>

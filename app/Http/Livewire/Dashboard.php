@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Book;
 use App\Models\Contact;
 use App\Models\EventList;
+use App\Models\Event;
 use App\Models\BookRequest;
 use App\Models\BookIssued;
 use App\Models\Activity;
@@ -83,7 +84,9 @@ class Dashboard extends Component
 
     public function issueBook()
     {
-        $this->validate();
+        $this->validate([
+            'return_date' => 'required|date|after_or_equal:today',
+        ]);
 
         $data = array(
             'issued_to' => $this->issued_to,
@@ -96,7 +99,7 @@ class Dashboard extends Component
         );
 
         $request = BookRequest::find($this->request_id);
-        
+
         $this->issued = $request->issued;
         $this->issued = 1;
         $this->bookCount > 0 && $this->bookCount--;
@@ -141,6 +144,7 @@ class Dashboard extends Component
         if(!is_null($event_name)){
             $this->eventList = EventList::where('event_name', $event_name)->get();
         }
+
     }
 
 
@@ -149,6 +153,7 @@ class Dashboard extends Component
         $eventName = $this->selectedEvent;
         $event_list = $this->eventList;
         $participants = EventList::all();
+        $events = Event::all();
         $contact = Contact::all();
         $book = Book::all();
         $user = User::all();
@@ -160,7 +165,7 @@ class Dashboard extends Component
         $activities = Activity::where('user_id', Auth::id())->with('activityable')->get();
 
 
-        return view('livewire.dashboard', compact('book', 'user',  'contact', 'female', 'male', 'bookRequests', 'bookIssued', 'today', 'participants', 'eventName', 'event_list', 'activities'));
+        return view('livewire.dashboard', compact('book', 'user', 'events',  'contact', 'female', 'male', 'bookRequests', 'bookIssued', 'today', 'participants', 'eventName', 'event_list', 'activities'));
     }
 
 }

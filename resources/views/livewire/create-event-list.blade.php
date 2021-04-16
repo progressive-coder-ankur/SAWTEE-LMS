@@ -1,30 +1,34 @@
 <div>
     @if($show)
 
+
     <x-create-event-list wire:model="show">
         <x-slot name="title">
-            Add New Event List
+            Add New Event Participant
         </x-slot>
+
 
         <x-slot name="content">
             <form>
                 <div class="mt-6 shadow sm:rounded-md">
                     <div class="px-4 py-5 bg-white dark:bg-dark sm:p-6">
+
                         <div class="grid grid-cols-12 gap-6">
+                            <div class="col-span-6">
+                                <label for="event_id"
+                                    class="block text-sm font-medium text-gray-700 dark:text-light">Event
+                                    Id</label>
+                                <x-jet-input type="number" disabled required value="{{ $event->id }}" name="event_id" id="event_id"
+                                    autocomplete="off"  />
+
+                            </div>
                             <div class="col-span-6">
                                 <label for="event_name"
                                     class="block text-sm font-medium text-gray-700 dark:text-light">Event
                                     Name</label>
-                                <select id="event_name" name="event_name" autocomplete="off" wire:model="selectedEvent"
-                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-dark focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                    <option>Select Gender</option>
-                                    @foreach($events as $event)
-                                    <option>{{$event->title}}</option>
-                                    @endforeach
-                                </select>
-                                <x-jet-input hidden type="text" wire:model="event_id" />
-                                @error('event_id') <span
-                                    class="flex items-center mt-1 ml-1 text-xs font-medium tracking-wide text-red-500">{{ $message }}</span>@enderror
+                                <x-jet-input type="text" aria-disabled="true" disabled required value="{{ $event->title }}" placeholder="{{ $event->title }}" name="event_name" id="event_name"
+                                    autocomplete="off"  />
+
                             </div>
 
                             <div class="col-span-6">

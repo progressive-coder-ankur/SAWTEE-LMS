@@ -28,7 +28,7 @@
 
 </head>
 
-<body>
+<body class="overflow-hidden">
     <div x-data="setup()" x-init="$refs.loading.classList.add('hidden'); setColors(color);" :class="{ 'dark': isDark}">
         <div class="flex h-screen antialiased text-gray-900 bg-white dark:bg-dark dark:text-light">
             @include('layouts.partials.loading')
@@ -41,7 +41,9 @@
 
                 @if(Auth::user()->is_admin)
                 @include('layouts.partials.admin.navigation')
-
+                @else
+                @include('layouts.partials.user.user-header')
+                @endif
                 <!-- Page Heading -->
 
                 <header class="bg-white dark:bg-dark shadow @if(request()->routeIs('dashboard')) hidden @endif ">
@@ -50,10 +52,6 @@
                     </div>
                 </header>
                 <main class="min-h-screen text-gray-900 dark:text-gray-100">
-
-                    @else
-                    @include('layouts.partials.user.user-header')
-                    @endif
 
                     {{ $slot }}
 

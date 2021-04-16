@@ -24,7 +24,7 @@ class CreateEventList extends Component
      */
     public function render()
     {
-        $events = Event::all();
-        return view('components.create-event-list', compact('events'));
+
+        return view('components.create-event-list');
     }
 }

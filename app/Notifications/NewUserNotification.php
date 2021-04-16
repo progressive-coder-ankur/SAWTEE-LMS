@@ -31,7 +31,7 @@ class NewUserNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'mail'];
     }
 
     /**
@@ -42,10 +42,11 @@ class NewUserNotification extends Notification
      */
     public function toMail($notifiable)
     {
+        $url = url('/admin/users'.$this->user->id);
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('New User Registered .')
+                    ->action('View User', $url)
+                    ->line('New User Registered');
     }
 
     /**

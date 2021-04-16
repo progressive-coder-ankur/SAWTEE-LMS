@@ -24,7 +24,7 @@ class Books extends Component
         'ISBN' => 'nullable|alpha_dash:17',
     ];
 
-    protected $message = [
+    protected $messages = [
         'title.required' => 'Title :attribute cannot be empty.',
         'category.required' => 'The :attribute cannot be empty, Please Choose a Category.',
         'shelf.required' => 'Shelf Id cannot be empty, Please fill correct data.',
@@ -190,7 +190,12 @@ class Books extends Component
                 'ISBN' => $this->ISBN = Manny::mask($this->ISBN, "111-11-11111-11-1"),
 
             ]);
+            $activity = array(
+                'title' => 'Book Edited ',
+                'user_id' => Auth::id(),
+            );
 
+            $book->activity()->create($activity);
             $this->resetInputFields();
             $this->showModal();
             $this->emit('renderUpdatedData');

@@ -13,7 +13,7 @@ use App\Models\EventList;
 class EventParticipantListTable extends LivewireDatatable
 {
     public $model = EventList::class;
-
+    public $event;
     public $exportable = true;
     public $searchable = 'name';
     public $hideable = 'inline';
@@ -22,7 +22,7 @@ class EventParticipantListTable extends LivewireDatatable
 
     public function builder()
     {
-        return EventList::query();
+        return EventList::query()->where('event_id', $this->event->id);
     }
 
     public function editList($id)
@@ -31,10 +31,13 @@ class EventParticipantListTable extends LivewireDatatable
         $this->emit('editList', $participant->id);
     }
 
+
     public function columns()
     {
         return [
         NumberColumn::name('id')->label('ID'),
+        NumberColumn::name('event_id')->label('event id'),
+        Column::name('event_name')->label('event name'),
         Column::name('name')->label('name'),
         Column::name('designation')->label('designation'),
         Column::name('orgname')->label('orgname'),

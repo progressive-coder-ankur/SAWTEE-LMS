@@ -11,10 +11,16 @@
             <a class="flex items-center">
                 <x-icons.add /> &nbsp;Add New Participant</a>
         </button>
+
+        <x-jet-button class="ml-2" type="button" >
+
+            <a href="{{ route('events') }}" class="flex items-center">
+                <x-icons.back /> &nbsp;Go Back</a>
+        </x-jet-button>
     </div>
     <div class="w-full ">
         <div class="container items-center justify-center mx-auto">
-            <livewire:event-participant-list-table />
+            <livewire:event-participant-list-table :event="$event" />
         </div>
     </div>
 </div>

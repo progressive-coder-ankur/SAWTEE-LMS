@@ -16,9 +16,14 @@ class Event extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function eventList()
+    public function event_list()
     {
         return $this->hasMany(EventList::class);
+    }
+
+    public function activity()
+    {
+        return $this->morphMany(Activity::class, 'activityable');
     }
 
     protected static function boot()

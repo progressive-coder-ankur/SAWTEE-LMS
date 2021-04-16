@@ -10,6 +10,7 @@ use App\Models\BookRequest;
 use App\Models\BookIssued;
 use App\Models\BookReturn;
 use App\Models\Activity;
+use App\Models\Event;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,7 @@ class UserDashboard extends Component
         $contact = Contact::all();
         $book = Book::all();
         $user = User::all();
+        $events = Event::all();
         $today = date("F j, Y");
         $female = $contact->where('gender', 'Female');
         $male = $contact->where('gender', 'Male');
@@ -30,6 +32,6 @@ class UserDashboard extends Component
         $issued = BookIssued::all();
         $returned = BookReturn::with('user')->where('returned_by', $username)->get();
         $activities = Activity::where('user_id', Auth::id())->with('activityable')->get();
-        return view('livewire.user-dashboard', compact('book', 'contact', 'female', 'male', 'bookRequests', 'activities', 'user', 'today', 'issued', 'returned'));
+        return view('livewire.user-dashboard', compact('book', 'contact', 'events', 'female', 'male', 'bookRequests', 'activities', 'user', 'today', 'issued', 'returned'));
     }
 }

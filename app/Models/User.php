@@ -70,11 +70,11 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->hasMany(Book::class);
     }
 
-    public function events(){
+    public function event(){
         $this->hasMany(Event::class);
     }
 
-    public function eventlist(){
+    public function event_list(){
         $this->hasMany(EventList::class);
     }
 
@@ -100,6 +100,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->roles()->where('id', 1)->exists();
     }
 
+    public function getIsUserAttribute()
+    {
+        return $this->roles()->where('id', 2)->exists();
+    }
+
+    public function getIsApproverAttribute()
+    {
+        return $this->roles()->where('id', 3)->exists();
+    }
+
     public function isAdmin()
     {
         $roles = Auth::check() ? Auth::user()->roles()->pluck('title')->toArray() : [];
@@ -108,6 +118,24 @@ class User extends Authenticatable implements MustVerifyEmail
           return;
         }
      }
+
+     public function isApprover()
+     {
+         $roles = Auth::check() ? Auth::user()->roles()->pluck('title')->toArray() : [];
+
+         if (in_array('Approver', $roles)) {
+           return;
+         }
+      }
+
+      public function isUser()
+      {
+          $roles = Auth::check() ? Auth::user()->roles()->pluck('title')->toArray() : [];
+
+          if (in_array('User', $roles)) {
+            return;
+          }
+       }
 
 
     public function roles()

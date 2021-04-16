@@ -6,6 +6,7 @@ use App\Http\Livewire\Books;
 use App\Http\Livewire\Contacts;
 use App\Http\Livewire\RequestBook;
 use App\Http\Livewire\Events;
+use App\Http\Livewire\Users;
 
 
 /*
@@ -33,6 +34,16 @@ Route::group(['middleware' => [
         Route::get('/users', function () {
             return view('users.index');
         })->name('users');
+
+        Route::get('/users/show/{id}',[Users::class, 'showUser'])->name('user.show');
+
+        Route::get('/users/roles', function () {
+            return view('users.roles');
+        })->name('user.roles');
+
+        Route::get('/users/roles/deleted', function () {
+            return view('users.deleted-roles');
+        })->name('roles.deleted');
 
         Route::get('/books', function () {
             return view('library.index');
@@ -81,27 +92,21 @@ Route::group(['middleware' => [
 
         Route::get('/events/show/{id}',[Events::class, 'showEvent'])->name('event.show');
 
-        Route::get('/event-list', function () {
-            return view('event.event-list');
-        })->name('event.list');
+        // Route::get('/event-list', function () {
+        //     return view('event.event-list');
+        // })->name('event.list');
 
 
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard');
 
-        Route::get('/roles', function () {
-            return view('users.roles');
-        })->name('user.roles');
-
-        Route::get('/roles/deleted', function () {
-            return view('users.deleted-roles');
-        })->name('roles.deleted');
 
         Route::get('/mark-all-read', function(){
             auth()->user()->unreadNotifications->markAsRead();
             return redirect()->back();
         })->name('admin.markall');
+
 });
 
 Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'user'], function () {
@@ -117,6 +122,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'user'],
     })->name('request.book');
 });
 
-
-
+Route::get('/leaves', function(){
+    return view('leave.index');
+})->name('leaves');
 

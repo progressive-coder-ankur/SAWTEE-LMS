@@ -18,7 +18,7 @@
 
     <div class="py-12">
         <div class="max-w-5xl px-6 mx-auto mb-6 sm:px-6 lg:px-8">
-            <livewire:users-table model="App\Models\User" hideable="inline" />
+           @livewire('users')
         </div>
     </div>
 </x-app-layout>

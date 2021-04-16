@@ -22,7 +22,7 @@ class Contacts extends Component
     public $show= false;
     protected $listeners = ['editContact' => 'edit', 'showContact' =>'showContact'];
 
-    public $rules = [
+    protected $rules = [
         'title' => 'required',
         'name' => 'required|string',
         'designation' => 'required|string',
@@ -34,6 +34,10 @@ class Contacts extends Component
         'orgname' => 'required|string',
         'gender' => 'required|string',
         'ext' => 'required_with:list,Staffs|digits:3',
+    ];
+
+    protected $messages = [
+
     ];
 
     public function mount()
@@ -257,9 +261,15 @@ class Contacts extends Component
                'region' =>  $this->region,
                'language' =>  $this->language,
             ]);
-            $this->resetInput();
+            $activity = array(
+                'title' => 'Contact Edited',
+                'user_id' => Auth::id(),
+            );
+            $contact->activity()->create($activity);
             $this->show = false;
             $this->updateMode = false;
+            $this->resetInput();
+            $this->emit('renderUpdatedData');
             $this->dispatchBrowserEvent('swal', [
                 'title' => 'Contact Updated',
                 'text' => 'You have successfull updated the contact record.',
@@ -269,7 +279,6 @@ class Contacts extends Component
                 'position'=>'center-center',
 
             ]);
-            $this->emit('renderUpdatedData');
         }
     }
     public function destroy($id)

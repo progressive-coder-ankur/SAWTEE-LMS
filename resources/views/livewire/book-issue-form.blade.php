@@ -25,14 +25,14 @@
                             <div class="hidden col-span-6 sm:col-span-3">
                                 <label for="request_id" class="block text-sm font-medium text-gray-700">Request
                                     ID</label>
-                                <input type="text" wire:model="request_id" name="request_id" id="request_id"
+                                <input type="text" disabled wire:model="request_id" name="request_id" id="request_id"
                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm default-value focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
 
                             </div>
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="issued_by" class="block text-sm font-medium text-gray-700">Issued
                                     By</label>
-                                <input type="text" wire:model="issued_by" name="issued_by" id="issued_by"
+                                <input type="text" disabled wire:model="issued_by" name="issued_by" id="issued_by"
                                     placeholder="{{Auth::user()->name}}"
                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm default-value focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
 
@@ -41,7 +41,7 @@
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="issued_to" class="block text-sm font-medium text-gray-700">Requested
                                     By</label>
-                                <input type="text" wire:model="issued_to" name="issued_to" id="issued_to"
+                                <input type="text" disabled wire:model="issued_to" name="issued_to" id="issued_to"
                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
 
                             </div>
@@ -49,7 +49,7 @@
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="book_name" class="block text-sm font-medium text-gray-700">Book
                                     Name</label>
-                                <input type="text" required wire:model="book_name" name="book_name" id="book_name"
+                                <input type="text" disabled required wire:model="book_name" name="book_name" id="book_name"
                                     placeholder="Enter Book Name"
                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm typehead focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                             </div>
@@ -70,7 +70,7 @@
                                 <label for="issued_at" class="block text-sm font-medium text-gray-700">Issued Date
                                 </label>
                                 <div class="grow-wrap">
-                                    <input type="text" wire:model="issued_at" name="issued_at" id="issued_at"
+                                    <input type="text" disabled wire:model="issued_at" name="issued_at" id="issued_at"
                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                                 </div>
                             </div>

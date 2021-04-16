@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
-use App\Models\Teams;
 use Illuminate\Support\Facades\DB;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\DateColumn;
@@ -20,9 +19,10 @@ class UsersTable extends LivewireDatatable
     public function builder()
     {
         return User::query()
-        ->leftJoin('teams', 'teams.user_id', 'users.current_team_id')
-        ->leftJoin('user_roles', 'user_roles.user_id', 'user_roles.role_id');
+        ->leftJoin('user_roles', 'user_roles.user_id', 'users.id');
     }
+
+
 
     public function columns()
     {
@@ -31,7 +31,6 @@ class UsersTable extends LivewireDatatable
             Column::name('name')->label('Name')->editable(),
             Column::name('email')->label('E-mail'),
             BooleanColumn::name('email_verified_at')->label('verified')->alignCenter(),
-            Column::name('teams.name')->label('Team'),
             Column::name('roles.title')->label('Role'),
             DateColumn::name('updated_at')->label('Updated At'),
             Column::callback(['id'], function ($id) {

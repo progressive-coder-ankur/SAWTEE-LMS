@@ -92,7 +92,7 @@ class TrashedBooksTable extends LivewireDatatable
                 // </div>
                 // ';
                 // })->label('deleted by')->alignCenter(),
-            Column::name('user.name')->label('Deleted By')->alignCenter(),
+            Column::name('users.name')->label('Deleted By')->alignCenter(),
 
             Column::name('author')
                 ->label('Author')

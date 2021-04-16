@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\EventList;
 use App\Models\Event;
+use App\Models\Activity;
 use Illuminate\Support\Facades\Auth;
 use Manny;
 use Illuminate\Validation\Rule;
@@ -13,15 +14,13 @@ use Livewire\WithPagination;
 
 class EventsList extends Component
 {
-    public $user_id,$event_id, $event_name, $name, $designation, $mobile, $phone, $orgname, $gender, $email1, $fax;
+    public $user_id, $event_id, $event_name, $name, $designation, $mobile, $phone, $orgname, $gender, $email1, $fax;
     public $updateMode = false;
-    public $events;
-    public $selectedEvent;
     public $show = false;
-    protected $listeners = ['editList' => 'edit'];
+    public $event;
+    protected $listeners = ['editList' => 'edit' ];
     public $rules = [
         'name' => 'required|string',
-        'event_name' => 'required|string',
         'designation' => 'required|string',
         'mobile' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:17',
         'phone' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:20',
@@ -30,7 +29,6 @@ class EventsList extends Component
 
     protected $message = [
         'name.required' => 'Name :attribute cannot be empty.',
-        'event_name.required' => 'The :attribute cannot be empty, Please Fill a name.',
         'designation.required' => 'The :attribute cannot be empty, Please Fill a designation.',
         'mobile.require' => 'The :attribute cannot be empty.',
         'phone.required' => ' The :attribute cannot be empty.',
@@ -67,7 +65,6 @@ class EventsList extends Component
 
     public function resetInput()
     {
-        $this->event_name = NULL;
         $this->name = NULL;
         $this->designation = NULL;
         $this->mobile = NULL;
@@ -84,7 +81,7 @@ class EventsList extends Component
             'type'  => 'success',
             'title' => 'Event',
             'icon' => 'success',
-            'text'  => "Event List Created Successfully",
+            'text'  => "Event List Updated Successfully",
         ]);
     }
 
@@ -99,6 +96,8 @@ class EventsList extends Component
         ]);
     }
 
+
+
     public function store()
     {
         $this->validate($this->rules, [
@@ -110,9 +109,9 @@ class EventsList extends Component
 
         ]);
 
-        $this->selecetedEvent->id = $this->event_id;
         $data = array(
-            'event_id' => $this->event_id,
+            'event_name' =>$this->event->title,
+            'event_id' => $this->event->id,
             'name' => $this->name,
             'designation' => $this->designation,
             'mobile' => $this->mobile= Manny::mask($this->mobile, "+111-111-1111-111"),
@@ -123,7 +122,12 @@ class EventsList extends Component
             'fax' => $this->fax,
         );
 
-        EventList::create($data);
+        $eventlist = EventList::create($data);
+        $activity = array(
+            'title' => 'New participant added',
+            'user_id' => Auth::id(),
+        );
+        $eventlist->activity()->create($activity);
         $this->resetInput();
         $this->showAlert();
         $this->emit('renderUpdatedData');
@@ -131,18 +135,19 @@ class EventsList extends Component
     }
 
     public function edit($id)
+
     {
-        $event = EventList::findOrFail($id);
-        $this->event_id = $id;
-        $this->event_name = $event->event_name;
-        $this->name = $event->name;
-        $this->designation = $event->designation;
-        $this->mobile = $event->mobile;
-        $this->phone = $event->phone;
-        $this->fax = $event->fax;
-        $this->orgname = $event->orgname;
-        $this->gender = $event->gender;
-        $this->email1 = $event->email1;
+        $data = EventList::findOrFail($id);
+        $this->event_id = $data->event_id;
+        $this->event_name = $data->event_name;
+        $this->name = $data->name;
+        $this->designation = $data->designation;
+        $this->mobile = $data->mobile;
+        $this->phone = $data->phone;
+        $this->fax = $data->fax;
+        $this->orgname = $data->orgname;
+        $this->gender = $data->gender;
+        $this->email1 = $data->email1;
 
         $this->updateMode = true;
         $this->show = true;
@@ -159,9 +164,11 @@ class EventsList extends Component
             ],
 
         ]);
-        if ($this->event_id) {
-        $event = EventList::find($this->event_id);
-        $event = update([
+
+
+        $eventlist = EventList::find($this->event_id);
+        $eventlist -> update([
+            'event_id' => $this->event_id,
             'event_name' => $this->event_name,
             'name' => $this->name,
             'designation' => $this->designation,
@@ -172,8 +179,18 @@ class EventsList extends Component
             'email1' => $this->email1,
             'fax' => $this->fax,
         ]);
+        $activity = array(
+            'title' => 'Participant Edited',
+            'user_id' => Auth::id(),
+        );
+        $eventlist->activity()->create($activity);
+        $this->updateMode = false;
+        $this->show = false;
+        $this->resetInput();
+        $this->showModal();
+        $this->emit('renderUpdatedData');
 
-        }
+
     }
 
 

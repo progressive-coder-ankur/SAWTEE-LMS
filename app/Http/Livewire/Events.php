@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Event;
+use App\Models\Activity;
 use Illuminate\Support\Facades\Auth;
 
 class Events extends Component
@@ -59,6 +60,7 @@ class Events extends Component
         ]);
     }
 
+
     public function store()
     {
         $this->validate(['title' => 'required|string|max:255']);
@@ -67,7 +69,12 @@ class Events extends Component
             'title' => $this->title,
         );
 
-        Event::create($data);
+        $event = Event::create($data);
+        $activity = array(
+            'title' => 'New participant added',
+            'user_id' => Auth::id(),
+        );
+        $event->activity()->create($activity);
         $this->resetInput();
         $this->showAlert();
         $this->emit('renderUpdatedData');
@@ -91,7 +98,13 @@ class Events extends Component
             $event = update([
                 'title' => $this->title,
             ]);
+            $activity = array(
+                'title' => 'New participant added',
+                'user_id' => Auth::id(),
+            );
+            $event->activity()->create($activity);
         }
+
         $this->resetInput();
         $this->showModal();
     }
