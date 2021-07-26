@@ -12,7 +12,15 @@ class LeaveRequest extends Model
 
     protected $guarded = [];
 
+    public function leaveApprovals()
+    {
+        return $this->belongsTo(LeaveApproval::class);
+    }
 
+    public function users()
+    {
+        return $this->belongTo(User::class);
+    }
 
     protected static function boot()
     {

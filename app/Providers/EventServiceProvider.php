@@ -13,6 +13,10 @@ use App\Listeners\SendNewBookRequestNotification;
 use App\Listeners\UserLastLoggedIn;
 use App\Events\BookIssue;
 use App\Listeners\SendNewIssueNotification;
+use App\Events\LeaveRequested;
+use App\Listeners\SendNewLeaveRequestNotification;
+use App\Events\LeaveApproved;
+use App\Listeners\SendNewLeaveApprovalNotification;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -37,6 +41,14 @@ class EventServiceProvider extends ServiceProvider
 
         BookIssue::class => [
             SendNewIssueNotification::class,
+        ],
+
+        LeaveRequested::class => [
+            SendNewLeaveRequestNotification::class,
+        ],
+
+        LeaveApproved::class => [
+            SendNewLeaveApprovalNotification::class,
         ],
 
     ];

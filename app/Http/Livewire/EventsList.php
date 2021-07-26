@@ -166,8 +166,8 @@ class EventsList extends Component
         ]);
 
 
-        $eventlist = EventList::find($this->event_id);
-        $eventlist -> update([
+        $eventList = EventList::find($this->event_id);
+        $eventList -> update([
             'event_id' => $this->event_id,
             'event_name' => $this->event_name,
             'name' => $this->name,
@@ -183,7 +183,7 @@ class EventsList extends Component
             'title' => 'Participant Edited',
             'user_id' => Auth::id(),
         );
-        $eventlist->activity()->create($activity);
+        $eventList->activity()->create($activity);
         $this->updateMode = false;
         $this->show = false;
         $this->resetInput();

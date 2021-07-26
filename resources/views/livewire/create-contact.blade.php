@@ -27,9 +27,9 @@
                                         <div class="col-span-2 sm:col-span-1">
                                             <label for="title"
                                                 class="block text-sm font-medium text-gray-700">Title</label>
-                                            <select id="title" name="title" autocomplete="off" wire:model="title"
+                                            <select id="title" name="title" autocomplete="title" wire:model="title"
                                                 placeholder="Select Title"
-                                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-0 focus:ring-gray-300 focus:border-gray-300 sm:text-sm">
+                                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
 
                                                 <option selected>Mr.</option>
                                                 <option>M/S</option>
@@ -46,8 +46,9 @@
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="name"
                                                 class="block text-sm font-medium text-gray-700">Name</label>
-                                            <x-jet-input type="text" name="name" id="name" autocomplete="off"
-                                                wire:model="name" />
+                                            <x-jet-input type="text" name="name" id="name" autocomplete="name"
+                                                wire:model="name"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                             @error('name') <span
                                                 class="flex items-center mt-1 ml-1 text-xs font-medium tracking-wide text-red-500">{{ $message }}</span>@enderror
                                         </div>
@@ -56,7 +57,8 @@
                                             <label for="designation"
                                                 class="block text-sm font-medium text-gray-700">Designation</label>
                                             <x-jet-input type="text" name="designation" id="designation"
-                                                autocomplete="off" wire:model="designation" />
+                                                autocomplete="designation" wire:model="designation"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                             @error('designation') <span
                                                 class="flex items-center mt-1 ml-1 text-xs font-medium tracking-wide text-red-500">{{ $message }}</span>@enderror
                                         </div>
@@ -65,7 +67,8 @@
                                             <label for="email_address1"
                                                 class="block text-sm font-medium text-gray-700">Primary Email</label>
                                             <x-jet-input type="email" name="email_address1" id="email_address1"
-                                                autocomplete="off" wire:model="email1" />
+                                                autocomplete="email" wire:model="email1"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                             @error('email1') <span
                                                 class="flex items-center mt-1 ml-1 text-xs font-medium tracking-wide text-red-500">{{ $message }}</span>@enderror
                                         </div>
@@ -74,7 +77,8 @@
                                             <label for="email_address2"
                                                 class="block text-sm font-medium text-gray-700">Optional Email</label>
                                             <x-jet-input type="email" name="email_address2" id="email_address2"
-                                                autocomplete="off" wire:model="email2" />
+                                                autocomplete="email" wire:model="email2"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                             @error('email2') <span
                                                 class="flex items-center mt-1 ml-1 text-xs font-medium tracking-wide text-red-500">{{ $message }}</span>@enderror
                                         </div>
@@ -82,15 +86,17 @@
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="phone" class="block text-sm font-medium text-gray-700">Landline
                                                 No.</label>
-                                            <x-jet-input type="tel" name="phone" id="phone" autocomplete="off"
-                                                wire:model="phone" />
+                                            <x-jet-input type="tel" name="phone" id="phone" autocomplete="phone"
+                                                wire:model="phone"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                         </div>
 
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="mobile" class="block text-sm font-medium text-gray-700">Mobile
                                                 No.</label>
-                                            <x-jet-input type="tel" name="mobile" id="mobile" autocomplete="off"
-                                                wire:model.lazy="mobile" wire:model.debounce.500ms="mobile" />
+                                            <x-jet-input type="tel" name="mobile" id="mobile" autocomplete="mobile"
+                                                wire:model.lazy="mobile" wire:model.debounce.500ms="mobile"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                             @error('mobile') <span
                                                 class="flex items-center mt-1 ml-1 text-xs font-medium tracking-wide text-red-500">{{ $message }}</span>@enderror
                                         </div>
@@ -99,23 +105,26 @@
                                             <label for="country"
                                                 class="block text-sm font-medium text-gray-700">Country</label>
 
-                                            <x-jet-input type="text" name="country" id="country" autocomplete="off"
-                                                wire:model="country" />
+                                            <x-jet-input type="text" name="country" id="country" autocomplete="country"
+                                                wire:model="country"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                         </div>
 
                                         <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                             <label for="city"
                                                 class="block text-sm font-medium text-gray-700">Region</label>
 
-                                            <x-jet-input type="text" name="region" id="region" autocomplete="off"
-                                                wire:model="region" />
+                                            <x-jet-input type="text" name="region" id="region" autocomplete="region"
+                                                wire:model="region"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                         </div>
 
                                         <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                             <label for="country"
                                                 class="block text-sm font-medium text-gray-700">Gender</label>
-                                            <select id="country" name="country" autocomplete="off" wire:model="gender"
-                                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm">
+                                            <select id="country" name="country" autocomplete="country"
+                                                wire:model="gender"
+                                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                                 <option>Select Gender</option>
                                                 <option>Male</option>
                                                 <option>Female</option>
@@ -127,27 +136,31 @@
                                         <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                             <label for="city"
                                                 class="block text-sm font-medium text-gray-700">City</label>
-                                            <x-jet-input type="text" name="city" id="city" wire:model="city" />
+                                            <x-jet-input type="text" name="city" id="city" wire:model="city"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                         </div>
 
                                         <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                             <label for="state" class="block text-sm font-medium text-gray-700">State /
                                                 Province</label>
-                                            <x-jet-input type="text" name="state" id="state" wire:model="state" />
+                                            <x-jet-input type="text" name="state" id="state" wire:model="state"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                         </div>
 
                                         <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                             <label for="postal_code" class="block text-sm font-medium text-gray-700">ZIP
                                                 / Postal</label>
                                             <x-jet-input type="text" name="postal_code" id="postal_code"
-                                                autocomplete="off" wire:model="zip" />
+                                                autocomplete="postal-code" wire:model="zip"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                         </div>
 
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="street_address"
                                                 class="block text-sm font-medium text-gray-700">Street address</label>
                                             <x-jet-input type="text" name="street_address" id="street_address"
-                                                autocomplete="off" wire:model="address1" />
+                                                autocomplete="street-address" wire:model="address1"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                             @error('address1') <span
                                                 class="flex items-center mt-1 ml-1 text-xs font-medium tracking-wide text-red-500">{{ $message }}</span>@enderror
                                         </div>
@@ -156,7 +169,8 @@
                                             <label for="street_address2"
                                                 class="block text-sm font-medium text-gray-700">Street address 2</label>
                                             <x-jet-input type="text" name="street_address2" id="street_address2"
-                                                autocomplete="off" wire:model="address2" />
+                                                autocomplete="street-address" wire:model="address2"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                         </div>
                                     </div>
                                 </div>
@@ -191,8 +205,9 @@
                                             <label for="orgname"
                                                 class="block text-sm font-medium text-gray-700">Organizaton
                                                 Name</label>
-                                            <x-jet-input type="text" name="orgname" id="orgname" autocomplete="off"
-                                                wire:model="orgname" />
+                                            <x-jet-input type="text" name="orgname" id="orgname" autocomplete="orgname"
+                                                wire:model="orgname"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                             @error('orgname') <span
                                                 class="flex items-center mt-1 ml-1 text-xs font-medium tracking-wide text-red-500">{{ $message }}</span>@enderror
                                         </div>
@@ -201,8 +216,9 @@
                                             <label for="orgdept"
                                                 class="block text-sm font-medium text-gray-700">Organization
                                                 Department</label>
-                                            <x-jet-input type="text" name="orgdept" id="orgdept" autocomplete="off"
-                                                wire:model="orgdept" />
+                                            <x-jet-input type="text" name="orgdept" id="orgdept" autocomplete="orgdept"
+                                                wire:model="orgdept"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                         </div>
 
                                         <div class="col-span-6 sm:col-span-3">
@@ -210,16 +226,16 @@
                                                 class="block text-sm font-medium text-gray-700">Organization
                                                 address</label>
                                             <x-jet-input type="text" name="orgaddress" id="orgaddress"
-                                                autocomplete="off" wire:model="orgaddress" />
+                                                autocomplete="orgaddress" wire:model="orgaddress"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                         </div>
 
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="category"
                                                 class="block text-sm font-medium text-gray-700">Category</label>
-                                            <select id="category" name="category" autocomplete="off"
+                                            <select id="category" name="category" autocomplete="category"
                                                 wire:model="category"
-                                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm">
-                                                <option value="" selected>Select Category</option>
+                                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                                 <option>SAWTEE</option>
                                                 <option>National</option>
                                                 <option>International</option>
@@ -229,9 +245,8 @@
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="list"
                                                 class="block text-sm font-medium text-gray-700">List</label>
-                                            <select id="list" name="list" autocomplete="off" wire:model="list"
-                                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm">
-                                                <option value="" selected>Select List</option>
+                                            <select id="list" name="list" autocomplete="list" wire:model="list"
+                                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                                 <option>Advisory Board</option>
                                                 <option>Member
                                                     Institution</option>
@@ -254,29 +269,30 @@
                                                 <option>Zone 2</option>
                                                 <option>Zone 3</option>
                                                 <option>Zone 4</option>
-
                                             </select>
                                         </div>
 
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="pobox"
                                                 class="block text-sm font-medium text-gray-700">PO.BOX</label>
-                                            <x-jet-input type="text" name="pobox" id="pobox" autocomplete="off"
-                                                wire:model="pobox" />
+                                            <x-jet-input type="text" name="pobox" id="pobox" autocomplete="pobox"
+                                                wire:model="pobox"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                         </div>
 
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="fax" class="block text-sm font-medium text-gray-700">Fax</label>
-                                            <x-jet-input type="text" name="fax" id="fax" autocomplete="off"
-                                                wire:model="fax" />
+                                            <x-jet-input type="text" name="fax" id="fax" autocomplete="fax"
+                                                wire:model="fax"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                         </div>
 
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="language"
                                                 class="block text-sm font-medium text-gray-700">Language</label>
-                                            <select id="language" name="language" autocomplete="off"
+                                            <select id="language" name="language" autocomplete="language"
                                                 wire:model="language"
-                                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-300 focus:border-gray-300 sm:text-sm">
+                                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                                 <option>English</option>
                                                 <option>Nepali</option>
                                                 <option>Both</option>
@@ -285,8 +301,9 @@
 
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="ext" class="block text-sm font-medium text-gray-700">Ext</label>
-                                            <x-jet-input type="number" name="ext" id="ext" autocomplete="off"
-                                                wire:model="ext" />
+                                            <x-jet-input type="number" name="ext" id="ext" autocomplete="ext"
+                                                wire:model="ext"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                                             @error('ext') <span
                                                 class="flex items-center mt-1 ml-1 text-xs font-medium tracking-wide text-red-500">{{ $message }}</span>@enderror
                                         </div>

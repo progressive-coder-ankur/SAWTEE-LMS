@@ -66,33 +66,54 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
-    public function book(){
-        $this->hasMany(Book::class);
+    public function book()
+    {
+       return $this->hasMany(Book::class);
     }
 
-    public function event(){
-        $this->hasMany(Event::class);
+    public function event()
+    {
+       return $this->hasMany(Event::class);
     }
 
-    public function event_list(){
-        $this->hasMany(EventList::class);
+    public function leaves()
+    {
+        return $this->hasMany(Leave::class);
+    }
+
+    public function event_list()
+    {
+       return $this->hasMany(EventList::class);
     }
 
 
-    public function book_request(){
-        $this->hasMany(BookRequest::class);
+    public function book_request()
+    {
+       return $this->hasMany(BookRequest::class);
     }
 
     public function book_issued(){
-        $this->hasMany(BookIssued::class);
+       return $this->hasMany(BookIssued::class);
     }
 
-    public function contact(){
-        $this->hasMany(Contact::class);
+    public function contact()
+    {
+       return $this->hasMany(Contact::class);
     }
 
-    public function book_return(){
-        $this->hasMany(BookReturn::class);
+    public function book_return()
+    {
+       return $this->hasMany(BookReturn::class);
+    }
+
+    public function leaveRequests()
+    {
+       return $this->hasMany(LeaveRequest::class);
+    }
+
+    public function leaveApprovals()
+    {
+       return $this->hasMany(leaveApproval::class);
     }
 
     public function getIsAdminAttribute()

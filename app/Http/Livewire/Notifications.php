@@ -2,24 +2,23 @@
 
 namespace App\Http\Livewire;
 
+use Auth;
 use Livewire\Component;
-use Illuminate\Notifications\DatabaseNotification;
 
 
-class UserNotifications extends Component
+class Notifications extends Component
 {
-
 
 
     public function markAsRead(string $notificationId)
     {
         $notifications = auth()->user()->unreadNotifications()->where('id', $notificationId)->first()->markAsRead();
-        $this->emit('NotificationMarkedAsRead', $notifications);
+        $this->emit('NotificationMarkedAsRead');
         return redirect()->back();
     }
 
     public function render()
     {
-        return view('livewire.user-notifications');
+        return view('livewire.notifications');
     }
 }

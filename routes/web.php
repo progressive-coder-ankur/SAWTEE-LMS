@@ -27,8 +27,6 @@ Route::get('/', function () {
 Route::group(['middleware' => [
     'auth:sanctum',
     'verified',
-
-
     ], 'prefix' => 'admin'], function () {
 
         Route::get('/users', function () {
@@ -115,11 +113,14 @@ Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'user'],
         return view('user-dashboard');
     })->name('user-dashboard');
 
-
-
     Route::get('/books/request-book', function () {
         return view('library.request-book');
     })->name('request.book');
+
+    Route::get('/mark-all-read', function(){
+        auth()->user()->unreadNotifications->markAsRead();
+        return redirect()->back();
+    })->name('user.markall');
 });
 
 Route::get('/leaves', function(){

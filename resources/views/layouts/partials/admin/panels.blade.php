@@ -130,12 +130,12 @@
                     <button @click.prevent="activeTabe = 'action'"
                         class="px-px pb-4 transition-all duration-200 transform translate-y-px border-b focus:outline-none"
                         :class="{'border-primary-dark dark:border-primary': activeTabe == 'action', 'border-transparent': activeTabe != 'action'}">
-                        Users
+                        Actions
                     </button>
                     <button @click.prevent="activeTabe = 'user'"
                         class="px-px pb-4 transition-all duration-200 transform translate-y-px border-b focus:outline-none"
                         :class="{'border-primary-dark dark:border-primary': activeTabe == 'user', 'border-transparent': activeTabe != 'user'}">
-                        Actions
+                        Users
                     </button>
                 </div>
             </div>
@@ -144,10 +144,14 @@
         <!-- Panel content (tabs) -->
         <div class="flex flex-col pt-4 overflow-y-hidden hover:overflow-y-auto">
             <!-- Action tab -->
-            @livewire('user-notifications')
+            <div class="space-y-4" x-show.transition.in="activeTabe == 'action'">
+                @livewire('action-notifications')
+            </div>
 
             <!-- User tab -->
-            @livewire('action-notifications')
+            <div class="space-y-4" x-show.transition.in="activeTabe == 'user'">
+                @livewire('user-notifications')
+            </div>
         </div>
     </div>
 </section>

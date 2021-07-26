@@ -15,14 +15,13 @@ class CreateLeavesTable extends Migration
     {
         Schema::create('leaves', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
-
-            $table->string('leave_type');
-            $table->multiLineString('message')->nullable();
-            $table->date('from');
-            $table->date('to');
+            $table->foreignId('request_id')->references('id')->on('leave_requests');
+            $table->boolean('approved');
+            $table->integer('sick_leave');
+            $table->integer('festive_leave');
+            $table->integer('mourning_leave');
+            $table->integer('annual_leave');
+            $table->integer('leave_balance');
             $table->timestamps();
         });
     }

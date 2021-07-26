@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLeavesApprovalTable extends Migration
+class CreateLeaveApprovalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLeavesApprovalTable extends Migration
      */
     public function up()
     {
-        Schema::create('leaves_approval', function (Blueprint $table) {
+        Schema::create('leave_approvals', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('request_id');
             $table->foreign('request_id')->references('id')->on('leave_requests')->onDelete('cascade');
@@ -31,6 +31,6 @@ class CreateLeavesApprovalTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('leaves_approval');
+        Schema::dropIfExists('leave_approvals');
     }
 }

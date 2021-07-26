@@ -1,5 +1,5 @@
 <div>
-    @if($updateMode=true)
+    @if($updateMode)
     <x-jet-dialog-modal wire:model="show">
         <x-slot name="title">
             Update Event List

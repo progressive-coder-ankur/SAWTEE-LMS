@@ -19,30 +19,21 @@ class UserLeaveTable extends LivewireDatatable
 
     public function builder()
     {
-        return LeaveRequest::query()->where('user_id', Auth::user()->id);
+        return LeaveRequest::query()->where('user_id', auth()->user()->id);
     }
 
-    public function edit($id)
-    {
-        $leave = LeaveRequest::findOrFail($id);
-        $this->emit('edit', $leave->id);
-    }
 
     public function columns()
     {
         return [
             NumberColumn::name('id')->label('id'),
             BooleanColumn::name('approved')->label('approved'),
-            Column::name('leave_type')->label('leave type'),
-            Column::name('message')->label('message'),
-            DateColumn::name('from')->label('Commencing from'),
-            DateColumn::name('to')->label('to'),
+            Column::name('leave_type')->label('leave type')->editable(),
+            Column::name('message')->label('message')->editable(),
+            DateColumn::name('from')->label('Commencing from')->editable(),
+            DateColumn::name('to')->label('ending at')->editable(),
             DateColumn::name('created_at')->label('created at'),
             DateColumn::name('updated_at')->label('updated at'),
-            Column::callback(['id'], function ($id) {
-                return view('livewire.user-leave-table-actions', ['id' => $id]);
-            })
-            ->label('Actions'),
         ];
     }
 }

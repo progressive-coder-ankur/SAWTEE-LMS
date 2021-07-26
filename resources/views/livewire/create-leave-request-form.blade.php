@@ -1,5 +1,6 @@
 <div>
-    <x-jet-dialog-modal>
+    @if($show)
+    <x-jet-dialog-modal  wire:model="show">
         <x-slot name="title">
             Request Leave
         </x-slot>
@@ -36,6 +37,7 @@
                                     <option>Annual</option>
                                     <option>Sick</option>
                                     <option>Festive</option>
+                                        <option>Mourning</option>
 
                                 </select>
 
@@ -81,4 +83,5 @@
             </x-jet-button>
         </x-slot>
     </x-jet-dialog-modal>
+    @endif
 </div>

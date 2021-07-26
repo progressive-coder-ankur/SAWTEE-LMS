@@ -19,9 +19,8 @@ class AllowedAccess
     public function handle(Request $request, Closure $next)
     {
         $userRole = Auth::check() ? Auth::user()->roles->pluck('title')->toArray() : [];
-        //dd($userRole);
         $currentRouteName = Route::currentRouteName();
-        //dd($currentRouteName);
+        // dd($currentRouteName);
 
         try{
             if(in_array($currentRouteName, $this->userAccessRole()[$userRole])){
@@ -44,7 +43,14 @@ class AllowedAccess
         return [
             'User' => [
                 'user-dashboard',
-                'request.book'
+                'request.book',
+                'leaves',
+            ],
+
+            'Approver' => [
+                'user-dashboard',
+                'request.book',
+                'leaves',
             ],
 
             'Admin' => [
@@ -59,7 +65,9 @@ class AllowedAccess
                 'deleted.lists',
                 'issued.books',
                 'returned.books',
-                'event.list',
+                'events',
+                'events.show',
+                'leaves',
             ],
         ];
 

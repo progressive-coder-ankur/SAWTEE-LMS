@@ -160,7 +160,7 @@ class Dashboard extends Component
         $today = date("F j, Y");
         $female = $contact->where('gender', 'Female')->count();
         $male = $contact->where('gender', 'Male')->count();
-        $bookRequests = BookRequest::with('user')->get();
+        $bookRequests = BookRequest::all();
         $bookIssued = BookIssued::all();
         $activities = Activity::where('user_id', Auth::id())->with('activityable')->get();
 

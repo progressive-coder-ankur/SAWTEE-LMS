@@ -18,8 +18,8 @@ class OnLeaveTable extends LivewireDatatable
 
     public function builder()
     {
-        $date = Carbon::now()->format('Y-m-d');
-        return LeaveRequest::query()->where([ ['from', '>=', $date], ['to', '<=', $date] ])->where('approved', 0);
+        $date = Carbon::today()->toDateString();
+        return LeaveRequest::query()->whereDate('from','<=', $date)->whereDate('to', '>=', $date)->where('approved', 1);
     }
 
 

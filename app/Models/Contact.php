@@ -19,7 +19,7 @@ class Contact extends Model
     }
 
     public function contact_category(){
-        $this->belongsTo(ContactCategory::class);
+       return $this->belongsTo(ContactCategory::class);
     }
 
     public function activity()

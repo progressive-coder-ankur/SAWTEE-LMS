@@ -102,9 +102,9 @@
                         <div>
                             <h6
                                 class="font-semibold leading-none tracking-wider text-gray-500 uppercase text-md dark:text-primary-light">
-                                Book Issued
+                                Activities
                             </h6>
-                            <span class="text-xl font-semibold">{{$issued->count()}}</span>
+                            <span class="text-xl font-semibold">{{$activities->count()}}</span>
                         </div>
                         <div>
                             <span>
@@ -350,67 +350,7 @@
                                 <h4 class="ml-3 text-lg font-semibold">Requests Made By you</h4>
                             </div>
                             <div class="relative p-6 overflow-auto bg-white rounded shadow-md">
-                                <table class="w-full table-auto">
-                                    <thead>
-                                        <tr class="text-sm leading-normal text-gray-600 uppercase bg-gray-200">
-                                            <th class="px-6 py-3 text-left">ID</th>
-                                            <th class="px-6 py-3 text-left">Book</th>
-                                            <th class="px-6 py-3 text-left">Request Date</th>
-                                            <th class="px-6 py-3 text-center">Issued Status</th>
-                                            <th class="px-6 py-3 text-left">Message</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="text-sm font-light text-gray-600">
-                                        @forelse($bookRequests as $request)
-                                        <tr class="border-b border-gray-200 hover:bg-gray-100">
-                                            <td class="px-6 py-3 text-left whitespace-nowrap">
-                                                <div class="flex items-center">
-                                                    <span class="font-medium">{{$loop->index+1}}</span>
-                                                </div>
-                                            </td>
-                                            <td class="px-6 py-3 text-left whitespace-nowrap">
-                                                <div class="flex items-center">
-                                                    <span class="font-medium">{{$request->book_name}}</span>
-                                                </div>
-                                            </td>
-
-                                            <td class="px-6 py-3 text-left">
-                                                <div class="flex items-center">
-                                                    {{-- <div class="mr-2">
-                                                                <img class="w-6 h-6 rounded-full"
-                                                                    src="https://randomuser.me/api/portraits/men/1.jpg" />
-                                                            </div> --}}
-                                                    <span>{{\Carbon\Carbon::parse($request->requested_at)->format('j F, Y')}}</span>
-                                                </div>
-                                            </td>
-                                            <td class="px-6 py-3 text-center">
-                                                @if($request->issued
-                                                == 1)
-                                                <span
-                                                    class="px-3 py-1 text-xs text-green-600 bg-green-200 rounded-full">
-                                                    Issued</span>
-                                                @else <span
-                                                    class="px-3 py-1 text-xs text-red-600 bg-red-200 rounded-full">Not
-                                                    Issued</span> @endif
-                                            </td>
-
-                                            <td class="px-6 py-3 text-left whitespace-nowrap">
-                                                <div class="flex items-center">
-                                                    <span class="font-medium">{{$request->message}}</span>
-                                                </div>
-                                            </td>
-
-                                        </tr>
-                                        @empty
-                                        <tr class="border-b border-gray-200 hover:bg-gray-100">NO requests.</tr>
-                                        @endforelse
-                                    </tbody>
-                                </table>
-                                <div class="bg-white border-b border-gray-200 rounded-lg rounded-t-none max-w-screen">
-                                    <div class="p-4 ">
-                                        {{$bookRequests->links()}}
-                                    </div>
-                                </div>
+                                <livewire:user-book-requests-table />
                             </div>
                         </div>
                     </div>
@@ -486,8 +426,93 @@
                     </div>
                 </div>
 
+
             </div>
 
+            <div class="grid grid-cols-1 mt-6 md:gap-4 md:grid-cols-12">
+                <div class="grid h-auto col-span-12 rounded">
+                    <div class="w-full h-full card-header bg-gray-50 rounded-2xl">
+                        <div x-data="{
+                            openTab: 1,
+                            activeClasses: 'border-l border-t border-r border-primary rounded-t text-blue-700 outline-none',
+                            inactiveClasses: 'text-primary hover:text-primary-dark'
+                          }"
+                        class="col-span-1 p-6 overflow-y-auto bg-white max-h-96 lg:col-span-8 rounded-2xl dark:bg-darker ">
+                        <ul class="flex border-b border-primary">
+                            <li @click="openTab = 1" class="mr-1 -mb-px" :class="{ '-mb-px': openTab === 1 }">
+                                <button :class="openTab === 1 ? activeClasses : inactiveClasses"
+                                    class="inline-block px-4 py-2 font-semibold bg-white rounded-t focus:outline-none hover:text-primary-dark text-primary dark:bg-darker dark:border-primary dark:text-primary-dark ">My Leave Requests</button>
+                            </li>
+                            <li @click="openTab = 2" class="mr-1" :class="{ '-mb-px': openTab === 2 }">
+                                <button :class="openTab === 2 ? activeClasses : inactiveClasses"
+                                    class="inline-block px-4 py-2 font-semibold bg-white focus:outline-none text-primary dark:bg-darker hover:text-primary-dark dark:border-primary dark:text-primary-dark">On Leave Today
+                                    </button>
+                            </li>
+                        </ul>
+                        <div class="w-full">
+                            <div x-show="openTab === 1">
+                                <livewire:user-leave-table hideable="inline">
+                            </div>
+                            <div x-show="openTab === 2">
+                                <livewire:on-leave-table />
+                                {{-- @livewire('users-on-leave') --}}
+                            </div>
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 mt-6 md:grid-cols-12" x-data="{'layout': 'list'}">
+                <div class="h-auto col-span-1 lg:col-span-12 rounded-2xl">
+                    <div class="w-full h-full p-4 bg-white card-header dark:bg-dark rounded-2xl ">
+                        <h3 class="flex justify-center">
+                            <span class="block text-2xl font-semibold text-gray-800 dark:text-light">
+                                Contacts
+                            </span>
+                        </h3>
+                        <div x-data="{
+                            openTab: 1,
+                            activeClasses: 'rounded bg-primary-darker hover:bg-primary-dark text-white outline-none',
+                            inactiveClasses: 'bg-primary-dark hover:bg-primary-darker text-white outline-none rounded'
+                          }"
+                            class="col-span-1 p-6 overflow-y-auto bg-white max-h-96 lg:col-span-8 rounded-2xl dark:bg-darker ">
+                            <ul class="flex justify-end">
+                                <li @click="openTab = 1" class="mr-1 -mb-px" :class="{ '-mb-px': openTab === 1 }">
+                                    <button :class="openTab === 1 ? activeClasses : inactiveClasses"
+                                        class="inline-block px-4 py-2 font-semibold bg-white rounded-t focus:outline-none dark:bg-primary dark:border-primary ">Table
+                                        View</button>
+                                </li>
+                                <li @click="openTab = 2" class="mr-1" :class="{ '-mb-px': openTab === 2}">
+                                    <button :class="openTab === 2 ? activeClasses : inactiveClasses"
+                                        class="inline-block px-4 py-2 font-semibold bg-white focus:outline-none dark:bg-primary dark:border-primary">
+                                        Grid View</button>
+                                </li>
+                            </ul>
+                            <div class="w-full mx-auto">
+                                <div x-show="openTab === 1">
+                                    <livewire:dashboard-contacts-table sort="id|desc"
+                                        searchable="name, category, email1" />
+                                </div>
+                                <div x-show="openTab === 2">
+                                    <div class="h-full p-4 text-gray-800 lg:p-8">
+                                        <div class="flex flex-wrap pb-8 -mx-2">
+                                            <!-- begin: user card -->
+
+
+                                            @livewire('contacts-grid-view')
+
+                                            <!-- end: user card -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

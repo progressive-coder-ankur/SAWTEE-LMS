@@ -17,11 +17,11 @@
         </button>
         <h1 class="text-2xl font-medium text-primary">{{ config('app.name', 'SAWTEE-LMS') }}</h1>
     </div>
-    <div class="space-x-2">
+    <div class="flex space-x-2">
         <!-- Toggle dark theme button -->
         <button aria-hidden="true" class="relative focus:outline-none" x-cloak @click="toggleTheme">
             <div class="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-lighter"></div>
-            <div class="absolute top-0 left-0 inline-flex items-center justify-center w-6 h-6 transition-all duration-150 transform scale-110 rounded-full shadow-sm"
+            <div class="absolute left-0 inline-flex items-center justify-center w-6 h-6 transition-all duration-150 transform scale-110 rounded-full shadow-sm top-2"
                 :class="{ 'translate-x-0 -translate-y-px  bg-white text-primary-dark': !isDark, 'translate-x-6 text-primary-100 bg-primary-darker': isDark }">
                 <svg x-show="!isDark" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -36,7 +36,19 @@
             </div>
         </button>
         <!-- Notification button -->
-        <button @click="openNotificationsPanel"
+        {{-- <button @click="openNotificationsPanel"
+            class="relative p-2 transition-colors duration-200 rounded-full text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:bg-primary-100 dark:focus:bg-primary-dark focus:ring-primary-darker">
+            <span class="sr-only">Open Notification panel</span>
+            <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
+            <livewire:notification-count />
+        </button> --}}
+
+        <div x-data="{ dropdownOpen: false }">
+            <button @click="dropdownOpen = !dropdownOpen"
             class="relative p-2 transition-colors duration-200 rounded-full text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:bg-primary-100 dark:focus:bg-primary-dark focus:ring-primary-darker">
             <span class="sr-only">Open Notification panel</span>
             <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -46,6 +58,19 @@
             </svg>
             <livewire:notification-count />
         </button>
+            <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 z-10 w-full h-full"></div>
+
+            <div x-show="dropdownOpen" class="absolute z-20 mt-2 overflow-hidden bg-white rounded-md shadow-lg right-20" style="width:30rem;">
+                @livewire('notifications')
+
+                    @if(Auth::user()->is_admin)
+                    <a href="{{ route('admin.markall') }}" class="block py-2 font-bold text-center text-white bg-gray-800">Mark All as Read</a>
+                    @else
+                    <a href="{{ route('user.markall') }}" class="block py-2 font-bold text-center text-white bg-gray-800">Mark All as Read</a>
+                    @endif
+
+            </div>
+        </div>
         <!-- Search panel button -->
         <button @click="openSearchPanel"
             class="p-1 transition-colors duration-200 rounded-md text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:ring">

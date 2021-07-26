@@ -61,7 +61,6 @@ class LeavesTable extends LivewireDatatable
                 DateColumn::name('to')->label('to'),
                 DateColumn::name('created_at')->label('created at'),
                 DateColumn::name('updated_at')->label('updated at'),
-
             ];
         }
     }

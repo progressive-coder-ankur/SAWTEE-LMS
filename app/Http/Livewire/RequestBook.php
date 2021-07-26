@@ -50,6 +50,19 @@ class RequestBook extends Component
         $this->show = false;
         }
 
+
+        public function showModal()
+        {
+            $this->emit('swal:modal', [
+                'type'  => 'success',
+                'title' => 'Library',
+                'icon' => 'success',
+                'text'  => "Book Request Sent Successfully",
+                'timeout' => 3000
+            ]);
+        }
+
+
     public function updated($field){
         if($field == 'requested_by')
         {
@@ -88,15 +101,8 @@ class RequestBook extends Component
 
         $request = BookRequest::create($data);
         $this->resetInputFields();
+        $this->showModal();
         BookRequested::dispatch($request);
-        $this->dispatchBrowserEvent('swal', [
-            'title' => 'Request Sent Successfully',
-            'timer'=>3000,
-            'toast' => true,
-            'icon'=>'success',
-            'timerProgressBar'=>true,
-            'position'=>'top-right'
-        ]);
 
     }
 

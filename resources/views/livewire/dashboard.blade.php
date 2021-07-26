@@ -82,7 +82,7 @@
                                 class="font-semibold leading-none tracking-wider text-gray-500 uppercase text-md dark:text-primary-light">
                                 Book Requests
                             </h6>
-                            <span class="text-xl font-semibold">{{$bookRequests->count()}}</span>
+                            <span class="text-xl font-semibold">{{ $bookRequests->count() }}</span>
 
                         </div>
                         <div>
@@ -518,8 +518,8 @@
                                 <livewire:user-leave-table hideable="inline">
                             </div>
                             <div x-show="openTab === 2">
-                                <livewire:on-leave-table />
-
+                                {{-- <livewire:on-leave-table /> --}}
+                                @livewire('users-on-leave')
                             </div>
                         </div>
 

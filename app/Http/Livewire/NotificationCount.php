@@ -10,6 +10,11 @@ class NotificationCount extends Component
 
     protected $listeners = ['NotificationMarkedAsRead' => 'render'];
 
+    public function updateCount(int $count): int
+    {
+        return $count;
+    }
+
 
     public function render()
     {
